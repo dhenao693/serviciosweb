@@ -1,29 +1,28 @@
-package co.com.sisevid.api.services.evidence.implementation;
+package co.com.sisevid.api.services.evidencedetails.implementation;
 
 import co.com.sisevid.api.dto.EvidenceDetailsDTO;
 import co.com.sisevid.api.entities.EvidenceDetails;
 import co.com.sisevid.api.repositoty.EvidenceDetailsRepository;
-import co.com.sisevid.api.services.evidence.ConsultEvidenceDetailsService;
+import co.com.sisevid.api.services.evidencedetails.ConsultAllEvidenceDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
-public class ConsultEvidenceDetails implements ConsultEvidenceDetailsService {
+
+public class ConsultAllEvidenceDetails implements ConsultAllEvidenceDetailsService {
     @Autowired
     EvidenceDetailsRepository evidenceDetailsRepository;
 
     @Autowired
-    public ConsultEvidenceDetails(EvidenceDetailsRepository evidenceRepository) {
+    public ConsultAllEvidenceDetails(EvidenceDetailsRepository evidenceDetailsRepository) {
         this.evidenceDetailsRepository = evidenceDetailsRepository;
     }
-
     @Override
-    public List<EvidenceDetailsDTO> consultEvidenceDetails(Long evidenceId) {
-        List<EvidenceDetails> evidencesDetails = evidenceDetailsRepository.findByEvidenceId(evidenceId);
+    public List<EvidenceDetailsDTO> consultAllEvidenceDetails() {
+        List<EvidenceDetails> evidencesDetails = evidenceDetailsRepository.findAll();
         System.out.println(evidencesDetails);
         List<EvidenceDetailsDTO> evidencesDetailsDTO = new ArrayList<>();
         EvidenceDetailsDTO evidenceDetailsDTO;

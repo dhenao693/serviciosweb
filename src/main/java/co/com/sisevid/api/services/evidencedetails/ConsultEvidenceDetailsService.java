@@ -1,4 +1,4 @@
-package co.com.sisevid.api.services.evidence;
+package co.com.sisevid.api.services.evidencedetails;
 
 import co.com.sisevid.api.dto.EvidenceDetailsDTO;
 
