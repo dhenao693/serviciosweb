@@ -4,6 +4,7 @@ import co.com.sisevid.api.dto.EvidenceDTO;
 import co.com.sisevid.api.dto.RolDTO;
 import co.com.sisevid.api.dto.UserWithRolsDTO;
 import co.com.sisevid.api.services.evidence.implementation.ConsultEvidences;
+import co.com.sisevid.api.services.joins.implementation.DeleteEvidenceWithDetails;
 import co.com.sisevid.api.services.joins.implementation.UserWithRols;
 import co.com.sisevid.api.services.rols.implementation.ConsultRol;
 import co.com.sisevid.api.services.rols.implementation.ConsultRols;
@@ -19,10 +20,23 @@ public class Joins {
     @Autowired
     private UserWithRols userWithRols;
 
+    @Autowired
+    private DeleteEvidenceWithDetails deleteEvidenceWithDetails;
+
     @GetMapping(path = "/consultUserWithRols", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserWithRolsDTO> verEmpleados(@RequestParam("user") String user) {
         try {
             return ResponseEntity.ok(userWithRols.consultUserWithRols(user));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping(path = "/deleteEvidenceWithDetails/{idEvidencia}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> verEmpleados(@PathVariable Long idEvidencia) {
+        try {
+            deleteEvidenceWithDetails.deleteEvidenceWith(idEvidencia);
+            return ResponseEntity.ok(Boolean.TRUE);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
