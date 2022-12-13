@@ -4,6 +4,7 @@ import co.com.sisevid.api.dto.EvidenceDetailsDTO;
 import co.com.sisevid.api.services.evidencedetails.implementation.ConsultAllEvidenceDetails;
 import co.com.sisevid.api.services.evidencedetails.implementation.ConsultEvidenceDetails;
 import co.com.sisevid.api.services.evidence.implementation.DeleteEvidence;
+import co.com.sisevid.api.services.evidencedetails.implementation.DeleteEvidenceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class EvidenceDetailsController {
     private ConsultAllEvidenceDetails consultAllEvidenceDetails;
 
     @Autowired
-    private DeleteEvidence deleteEvidence;
+    private DeleteEvidenceDetails deleteEvidenceDetails;
 
     @GetMapping(path = "/consultEvidencesDetails", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EvidenceDetailsDTO>> seeEvidencesDetails(@RequestParam("evidenceId") Long evidenceId) {
@@ -44,9 +45,8 @@ public class EvidenceDetailsController {
     @DeleteMapping(path = "/deteleEvidence/{idEvidencia}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> seeUsers(@PathVariable Long idEvidencia) {
         try {
-            //deleteEvidence.deleteById(idEvidencia);
-            return ResponseEntity.badRequest().build();
-            //return ResponseEntity.ok(Boolean.TRUE);
+            deleteEvidenceDetails.deleteByEvidenceId(idEvidencia);
+            return ResponseEntity.ok(Boolean.TRUE);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
