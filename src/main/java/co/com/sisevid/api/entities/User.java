@@ -16,8 +16,9 @@ public class User {
     @Column(name ="ID_USUARIO")
     private long id;
 
-    @Column(name ="ID_USUARIO_INFO_CONTACTO")
-    private String idUserInfo;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ID_USUARIO_INFO_CONTACTO", referencedColumnName = "ID_USUARIO_INFO_CONTACTO")
+    private UserInfoContact idUserInfo;
 
     @Column(name ="USUARIO")
     private String user;

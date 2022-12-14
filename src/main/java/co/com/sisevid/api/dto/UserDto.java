@@ -1,5 +1,6 @@
 package co.com.sisevid.api.dto;
 
+import co.com.sisevid.api.entities.UserInfoContact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDto {
     private long id;
-    private String idUserInfo;
+    private UserInfoContact idUserInfo;
     private String password;
     private String user;
     private String userCreate;
