@@ -9,20 +9,18 @@ import java.util.List;
 
 @Repository
 public interface EvidenceCrudRepository extends CrudRepository<Evidence, Long> {
-    @Query("SELECT e FROM EVIDENCIA e "
-            /*"WHERE (:id IS NULL OR e.ID_EVIDENCIA = :id) "
-            "SELECT e FROM EVIDENCIA e WHERE" +
-            "(:id is null or e.ID_EVIDENCIA  = :id) " +
-            " AND (:title is null or e.TITULO  = :title) " +
-            " AND (:description is null or e.DESCRIPCIÓN  = :description) " +
-            " AND (:type is null or e.TIPO  = :type) " +
-            " AND (:typeFile is null or e.TIPO_ARCHIVO  = :typeFile) " +
-            " AND (:evidenceCreationDate is null or e.FECHA_CREACION_EVIDENCIA  = :evidenceCreationDate) " +
-            " AND (:evidenceRegisterDate is null or e.FECHA_REGISTRO_EVIDENCIA  = :evidenceRegisterDate) " +
-            " AND (:authors is null or e.AUTORES  = :authors) " +
-            " AND (:observation is null or e.OBSERVACION  = :observation) " +
-            " AND (:userCreate is null or e.USUARIO_CREACION  = :userCreate) " +
-            " AND (:creationDate is null or e.FECHA_CREACION  = :creationDate) "*/
+    @Query("SELECT e FROM Evidence e WHERE" +
+            "(:id is null or e.id  = :id) " +
+            " AND (:title is null or e.title  = :title) " +
+            " AND (:description is null or e.description  = :description) " +
+            " AND (:type is null or e.type  = :type) " +
+            " AND (:typeFile is null or e.typeFile  = :typeFile) " +
+            " AND (:evidenceCreationDate is null or e.evidenceCreationDate  = :evidenceCreationDate) " +
+            " AND (:evidenceRegisterDate is null or e.evidenceRegisterDate  = :evidenceRegisterDate) " +
+            " AND (:authors is null or e.authors  = :authors) " +
+            " AND (:observation is null or e.observation  = :observation) " +
+            " AND (:userCreate is null or e.userCreate  = :userCreate) " +
+            " AND (:creationDate is null or e.creationDate  = :creationDate) "
     )
     List<Evidence> findByFilters(
             final Long id,

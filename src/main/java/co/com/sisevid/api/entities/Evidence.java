@@ -1,17 +1,25 @@
 package co.com.sisevid.api.entities;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "EVIDENCIA")
-@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "EVIDENCIA")
 public class Evidence {
     @Id
     @GenericGenerator(name = "SEQ_VALOR", strategy = "increment")

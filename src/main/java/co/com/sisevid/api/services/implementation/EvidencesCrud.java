@@ -6,6 +6,7 @@ import co.com.sisevid.api.services.EvidenceCrudServices;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class EvidencesCrud implements EvidenceCrudServices {
@@ -28,11 +29,10 @@ public class EvidencesCrud implements EvidenceCrudServices {
 
     }
 
-    public Iterable<Evidence> findByFilters(Long id, String title, String description, String type, String typeFile,
-                                            String evidenceCreationDate, String evidenceRegisterDate, String authors,
-                                            String observation, String userCreate, String creationDate) throws EntityNotFoundException {
-        Iterable<Evidence> evidenceList = evidenceCrudRepository.findByFilters(id, title, description, type, typeFile,
+    public List<Evidence> findByFilters(Long id, String title, String description, String type, String typeFile,
+                                        String evidenceCreationDate, String evidenceRegisterDate, String authors,
+                                        String observation, String userCreate, String creationDate) throws EntityNotFoundException {
+        return evidenceCrudRepository.findByFilters(id, title, description, type, typeFile,
                 evidenceCreationDate, evidenceRegisterDate, authors, observation, userCreate, creationDate);
-        return evidenceCrudRepository.findAll();
     }
 }

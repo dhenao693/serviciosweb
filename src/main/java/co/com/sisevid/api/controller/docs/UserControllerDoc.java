@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-public interface EvidencesControllerDoc {
-    @Operation(summary = "Create a evidence")
+public interface UserControllerDoc {
+    @Operation(summary = "Create a user")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
@@ -32,7 +32,7 @@ public interface EvidencesControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<EvidenceDTO>> save(@RequestBody final Evidence evidence);
 
-    @Operation(summary = "Delete a evidence")
+    @Operation(summary = "Delete a user")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -45,7 +45,7 @@ public interface EvidencesControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<Object>> delete(@PathVariable final Long id);
 
-    @Operation(summary = "Update a evidence")
+    @Operation(summary = "Update a user")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -58,7 +58,7 @@ public interface EvidencesControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<EvidenceDTO>> update(@RequestBody final Evidence client) throws EntityNotFoundException;
 
-    @Operation(summary = "Find a evidence by filters")
+    @Operation(summary = "Find a user by filters")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -71,15 +71,9 @@ public interface EvidencesControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(
             @RequestParam(name = "id", required = false) final Long id,
-            @RequestParam(name = "title", required = false) final String title,
-            @RequestParam(name = "description", required = false) final String description,
-            @RequestParam(name = "type", required = false) final String type,
-            @RequestParam(name = "typeFile", required = false) final String typeFile,
-            @RequestParam(name = "typeFile", required = false) final String evidenceCreationDate,
-            @RequestParam(name = "typeFile", required = false) final String evidenceRegisterDate,
-            @RequestParam(name = "typeFile", required = false) final String authors,
-            @RequestParam(name = "typeFile", required = false) final String observation,
-            @RequestParam(name = "typeFile", required = false) final String userCreate,
-            @RequestParam(name = "typeFile", required = false) final String creationDate
+            @RequestParam(name = "idUserInfo", required = false) final String idUserInfo,
+            @RequestParam(name = "password", required = false) final String password,
+            @RequestParam(name = "user", required = false) final String user,
+            @RequestParam(name = "userCreate", required = false) final String userCreate
     ) throws EntityNotFoundException;
 }

@@ -81,14 +81,13 @@ public class EvidenceControllerSolid implements EvidencesControllerDoc {
             @RequestParam(name = "userCreate", required = false) final String userCreate,
             @RequestParam(name = "creationDate", required = false) final String creationDate
     ) throws EntityNotFoundException {
-        List<Evidence> evidenceDTOList = consultEvidences.consultEvidences2();
-        Iterable<Evidence> evidenceIterator = evidencesCrud.findByFilters(id, title, description, type, typeFile,
+        List<Evidence> evidenceIterator = evidencesCrud.findByFilters(id, title, description, type, typeFile,
                 evidenceCreationDate, evidenceRegisterDate, authors, observation, userCreate, creationDate);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(ApiResponseDTO.<List<EvidenceDTO>>builder()
                         .code(HttpStatus.OK.value())
                         .message("Client list retrieved successfully")
-                        .data(evidenceDTOList.stream().map(this::convertModelToDto).collect(Collectors.toList()))
+                        .data(evidenceIterator.stream().map(this::convertModelToDto).collect(Collectors.toList()))
                         .build()
                 );
     }
