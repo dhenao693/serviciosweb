@@ -1,4 +1,4 @@
-package co.com.sisevid.api.controller;
+package co.com.sisevid.api.controller.implementations;
 
 import co.com.sisevid.api.dto.RolDTO;
 import co.com.sisevid.api.services.rols.implementation.ConsultRol;
