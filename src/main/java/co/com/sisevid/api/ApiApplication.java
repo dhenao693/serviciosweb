@@ -38,9 +38,9 @@ public class ApiApplication {
                                 .bearerFormat("JWT")))
                 .addServersItem(server)
                 .info(new Info()
-                        .title("SOA API")
+                        .title("Servicios Web Api")
                         .version("1.0")
-                        .description("SOA API")
+                        .description("Servicios Web Api")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
