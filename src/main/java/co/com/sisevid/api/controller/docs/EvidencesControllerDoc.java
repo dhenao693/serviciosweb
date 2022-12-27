@@ -71,9 +71,15 @@ public interface EvidencesControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(
             @RequestParam(name = "id", required = false) final Long id,
-            @RequestParam(name = "fullName", required = false) final String fullName,
-            @RequestParam(name = "businessName", required = false) final String businessName,
-            @RequestParam(name = "email", required = false) final String email,
-            @RequestParam(name = "phone", required = false) final String phone
+            @RequestParam(name = "title", required = false) final String title,
+            @RequestParam(name = "description", required = false) final String description,
+            @RequestParam(name = "type", required = false) final String type,
+            @RequestParam(name = "typeFile", required = false) final String typeFile,
+            @RequestParam(name = "typeFile", required = false) final String evidenceCreationDate,
+            @RequestParam(name = "typeFile", required = false) final String evidenceRegisterDate,
+            @RequestParam(name = "typeFile", required = false) final String authors,
+            @RequestParam(name = "typeFile", required = false) final String observation,
+            @RequestParam(name = "typeFile", required = false) final String userCreate,
+            @RequestParam(name = "typeFile", required = false) final String creationDate
     ) throws EntityNotFoundException;
 }

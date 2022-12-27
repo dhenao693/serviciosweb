@@ -28,8 +28,11 @@ public class EvidencesCrud implements EvidenceCrudServices {
 
     }
 
-    public Iterable<Evidence> findByFilters(Long id, String fullName, String businessName, String email, String phone) throws EntityNotFoundException {
-        Iterable<Evidence> evidenceList = evidenceCrudRepository.findAll();
+    public Iterable<Evidence> findByFilters(Long id, String title, String description, String type, String typeFile,
+                                            String evidenceCreationDate, String evidenceRegisterDate, String authors,
+                                            String observation, String userCreate, String creationDate) throws EntityNotFoundException {
+        Iterable<Evidence> evidenceList = evidenceCrudRepository.findByFilters(id, title, description, type, typeFile,
+                evidenceCreationDate, evidenceRegisterDate, authors, observation, userCreate, creationDate);
         return evidenceCrudRepository.findAll();
     }
 }

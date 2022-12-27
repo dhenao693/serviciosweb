@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
@@ -30,7 +31,7 @@ public class EvidenceControllerSolid implements EvidencesControllerDoc {
     private final EvidencesCrud evidencesCrud;
     private final ObjectMapper objectMapper;
 
-    public EvidenceControllerSolid(ConsultEvidences consultEvidences, /*EvidencesCrud evidencesCrud,*/  EvidencesCrud evidencesCrud, ObjectMapper objectMapper) {
+    public EvidenceControllerSolid(ConsultEvidences consultEvidences, EvidencesCrud evidencesCrud, ObjectMapper objectMapper) {
         this.consultEvidences = consultEvidences;
         this.evidencesCrud = evidencesCrud;
         this.objectMapper = objectMapper;
@@ -67,9 +68,22 @@ public class EvidenceControllerSolid implements EvidencesControllerDoc {
 
     @GetMapping(path = "/findEvidences", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(Long id, String fullName, String businessName, String email, String phone) throws EntityNotFoundException {
+    public ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(
+            @RequestParam(name = "id", required = false) final Long id,
+            @RequestParam(name = "title", required = false) final String title,
+            @RequestParam(name = "description", required = false) final String description,
+            @RequestParam(name = "type", required = false) final String type,
+            @RequestParam(name = "typeFile", required = false) final String typeFile,
+            @RequestParam(name = "evidenceCreationDate", required = false) final String evidenceCreationDate,
+            @RequestParam(name = "evidenceRegisterDate", required = false) final String evidenceRegisterDate,
+            @RequestParam(name = "authors", required = false) final String authors,
+            @RequestParam(name = "observation", required = false) final String observation,
+            @RequestParam(name = "userCreate", required = false) final String userCreate,
+            @RequestParam(name = "creationDate", required = false) final String creationDate
+    ) throws EntityNotFoundException {
         List<Evidence> evidenceDTOList = consultEvidences.consultEvidences2();
-        Iterable<Evidence> evidenceIterator = evidencesCrud.findByFilters(id, fullName, businessName, email, phone);
+        Iterable<Evidence> evidenceIterator = evidencesCrud.findByFilters(id, title, description, type, typeFile,
+                evidenceCreationDate, evidenceRegisterDate, authors, observation, userCreate, creationDate);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(ApiResponseDTO.<List<EvidenceDTO>>builder()
                         .code(HttpStatus.OK.value())

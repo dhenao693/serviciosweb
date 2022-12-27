@@ -9,6 +9,8 @@ public interface EvidenceCrudServices {
 
     void delete(final Long id) throws EntityNotFoundException;
 
-    Iterable<Evidence> findByFilters(final Long id, final String fullName, final String businessName, final String email, final String phone)
+    Iterable<Evidence> findByFilters(Long id, String title, String description, String type, String typeFile,
+                                     String evidenceCreationDate, String evidenceRegisterDate, String authors,
+                                     String observation, String userCreate, String creationDate)
             throws EntityNotFoundException;
 }
