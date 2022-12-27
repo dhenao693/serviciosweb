@@ -1,7 +1,7 @@
 package co.com.sisevid.api.configurations;
 
+import co.com.sisevid.api.security.JwtAuthorizationFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polijic.soa.security.JwtAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

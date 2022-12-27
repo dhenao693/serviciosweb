@@ -1,14 +1,15 @@
 package co.com.sisevid.api.security;
 
+import co.com.sisevid.api.dto.UserDto;
+import co.com.sisevid.api.dto.security.ApiResponseDTO;
+import co.com.sisevid.api.dto.security.CompanyDTO;
+import co.com.sisevid.api.dto.security.UserRequestResponse;
 import co.com.sisevid.api.exceptions.BusinessRuleException;
 import co.com.sisevid.api.utils.constants.Constants;
+import co.com.sisevid.api.utils.constants.PermissionsConstants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polijic.soa.dto.v1.ApiResponseDTO;
-import com.polijic.soa.dto.v1.security.CompanyDTO;
-import com.polijic.soa.dto.v1.security.UserDTO;
-import com.polijic.soa.dto.v1.security.UserRequestResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -130,10 +131,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private UserRequestResponse validateUserInfoAndRequest(HttpServletRequest request,
                                                            Claims claims) throws IOException, BusinessRuleException {
         UserRequestResponse userRequestResponse = UserRequestResponse.builder()
-                .user(UserDTO.builder().id(Constants.USER_SERVICE).build()).request(request).build();
+                .user(UserDto.builder().id(Constants.USER_SERVICE).build()).request(request).build();
 
         if (!claims.getAudience().equals(Constants.AUDIENCE_SERVICE)) {
-            userRequestResponse.getUser().setId(null);
+            userRequestResponse.getUser().setId(Long.valueOf(null));
             Map<String, Object> tokenUser = claims.get("user", Map.class);
 
             if (tokenUser != null && tokenUser.get("id") != null) {
@@ -210,24 +211,18 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return jsonData;
     }
 
-    private static UserDTO getUserDTOFromToken(Map<String, Object> tokenUser) {
+    private static UserDto getUserDTOFromToken(Map<String, Object> tokenUser) {
         log.trace("Getting UserDTO from token {}", tokenUser);
-        UserDTO userDTO = UserDTO.builder()
+        UserDto userDTO = UserDto.builder()
                 .id(Long.valueOf(tokenUser.get("id").toString())).build();
         List<CompanyDTO> companyList = getCompanyListFromTokenCompanies(
                 (List<Map<String, String>>) tokenUser.get("companies"));
 
         try {
-            userDTO.setPhone((tokenUser.get("phone").toString()));
-            userDTO.setAllowAdmin(Boolean.valueOf(tokenUser.get("allow_admin").toString()));
-            userDTO.setDefaultCompanyId(
-                    Long.valueOf(tokenUser.get("default_company_id").toString()));
-            userDTO.setLegacyId(Long.valueOf(tokenUser.get("legacy_id").toString()));
-            userDTO.setFirstName(tokenUser.get("first_name").toString());
-            userDTO.setLastName(tokenUser.get("last_name").toString());
-            userDTO.setEmail(tokenUser.get("email").toString());
-            userDTO.setCountryId(Long.valueOf(tokenUser.get("country_id").toString()));
-            userDTO.setCompanies(companyList);
+            userDTO.setPassword((tokenUser.get("password").toString()));
+            userDTO.setUser(tokenUser.get("user").toString());
+            userDTO.setUserCreate(tokenUser.get("userCreate").toString());
+            userDTO.setDateCreate(tokenUser.get("dateCreate").toString());
         } catch (NullPointerException exception) {
             log.error("The user information is not complete");
         }
@@ -255,11 +250,11 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return resultSet;
     }
 
-    private UserDTO getUserFromJsonNode(JsonNode jsonNode) throws JsonProcessingException {
-        UserDTO userDTO = UserDTO.builder().id(Constants.USER_SERVICE).build();
+    private UserDto getUserFromJsonNode(JsonNode jsonNode) throws JsonProcessingException {
+        UserDto userDTO = UserDto.builder().id(Constants.USER_SERVICE).build();
 
         if (jsonNode.get(Constants.USER_NODE) != null) {
-            userDTO = objectMapper.readValue(jsonNode.get(Constants.USER_NODE).toString(), UserDTO.class);
+            userDTO = objectMapper.readValue(jsonNode.get(Constants.USER_NODE).toString(), UserDto.class);
             log.trace("UserDTO: {}", userDTO);
         }
 
@@ -284,8 +279,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return stringBuilder.toString();
     }
 
-    private boolean isValidModulesAndUser(Claims claims, UserDTO userDTO) {
-        if (userDTO.getId() == null || !isValidModules(claims)) {
+    private boolean isValidModulesAndUser(Claims claims, UserDto userDTO) {
+        if (/*userDTO.getId() == null || */!isValidModules(claims)) {
             log.error("Invalid user or modules");
             return false;
         }
@@ -338,7 +333,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return true;
     }
 
-    public UsernamePasswordAuthenticationToken authenticateUser(Claims claims, UserDTO userDTO) {
+    public UsernamePasswordAuthenticationToken authenticateUser(Claims claims, UserDto userDTO) {
         Set<SimpleGrantedAuthority> grantedValues = getGrantedValues(claims);
         return new UsernamePasswordAuthenticationToken(userDTO, "", grantedValues);
     }
