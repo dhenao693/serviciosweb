@@ -43,7 +43,7 @@ public interface EvidencesControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<Object>> delete(@PathVariable final String id);
+    ResponseEntity<ApiResponseDTO<Object>> delete(@PathVariable final Long id);
 
     @Operation(summary = "Update a client")
     @ApiResponses(value = {
@@ -70,7 +70,7 @@ public interface EvidencesControllerDoc {
             )
     })
     ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(
-            @RequestParam(name = "id", required = false) final String id,
+            @RequestParam(name = "id", required = false) final Long id,
             @RequestParam(name = "fullName", required = false) final String fullName,
             @RequestParam(name = "businessName", required = false) final String businessName,
             @RequestParam(name = "email", required = false) final String email,

@@ -3,13 +3,15 @@ package co.com.sisevid.api.services.implementation;
 import co.com.sisevid.api.entities.Evidence;
 import co.com.sisevid.api.repositoty.EvidenceCrudRepository;
 import co.com.sisevid.api.services.EvidenceCrudServices;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 
-public class EvidencesCrudServices implements EvidenceCrudServices {
+@Service
+public class EvidencesCrud implements EvidenceCrudServices {
     private final EvidenceCrudRepository evidenceCrudRepository;
 
-    public EvidencesCrudServices(EvidenceCrudRepository evidenceCrudRepository) {
+    public EvidencesCrud(EvidenceCrudRepository evidenceCrudRepository) {
         this.evidenceCrudRepository = evidenceCrudRepository;
     }
 
