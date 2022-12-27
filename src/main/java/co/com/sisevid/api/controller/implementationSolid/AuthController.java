@@ -1,6 +1,6 @@
-package co.com.sisevid.api.controller.implementations;
+package co.com.sisevid.api.controller.implementationSolid;
 
-import co.com.sisevid.api.controller.AuthControllerDocs;
+import co.com.sisevid.api.controller.docs.AuthControllerDocs;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
 import co.com.sisevid.api.dto.security.JwtDto;
 import co.com.sisevid.api.utils.ClientAuthentication;

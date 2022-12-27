@@ -1,4 +1,4 @@
-package co.com.sisevid.api.controller;
+package co.com.sisevid.api.controller.docs;
 
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
 import co.com.sisevid.api.dto.security.JwtDto;

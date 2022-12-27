@@ -42,4 +42,8 @@ public class ConsultEvidences implements ConsultEvidencesService {
         }
         return evidenceDTOList;
     }
+
+    public List<Evidence> consultEvidences2() {
+        return evidenceRepository.findAll();
+    }
 }
