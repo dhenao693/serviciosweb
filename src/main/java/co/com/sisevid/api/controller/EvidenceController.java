@@ -1,18 +1,18 @@
 package co.com.sisevid.api.controller;
 
 import co.com.sisevid.api.dto.EvidenceDTO;
-import co.com.sisevid.api.dto.RolDTO;
 import co.com.sisevid.api.services.evidence.implementation.ConsultEvidences;
 import co.com.sisevid.api.services.evidence.implementation.DeleteEvidence;
-import co.com.sisevid.api.services.rols.implementation.ConsultRol;
-import co.com.sisevid.api.services.rols.implementation.ConsultRols;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/evidences")

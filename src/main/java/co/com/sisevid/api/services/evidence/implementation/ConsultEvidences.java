@@ -25,7 +25,7 @@ public class ConsultEvidences implements ConsultEvidencesService {
         List<EvidenceDTO> evidenceDTOList = new ArrayList<>();
         EvidenceDTO evidenceDTO;
         List<Evidence> rolList = evidenceRepository.findAll();
-        for (Evidence evidenceDB: rolList) {
+        for (Evidence evidenceDB : rolList) {
             evidenceDTO = new EvidenceDTO();
             evidenceDTO.setId(evidenceDB.getId());
             evidenceDTO.setTitle(evidenceDB.getTitle());

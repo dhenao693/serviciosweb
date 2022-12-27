@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface EvidenceDetailsRepository extends JpaRepository<EvidenceDetails, Long> {
-    @Query(value ="select * from evidencia_detalle ed where ID_EVIDENCIA = ?1",
+    @Query(value = "select * from evidencia_detalle ed where ID_EVIDENCIA = ?1",
             nativeQuery = true)
-    List <EvidenceDetails> findByEvidenceId(Long evidenceId);
+    List<EvidenceDetails> findByEvidenceId(Long evidenceId);
 }

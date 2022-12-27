@@ -25,7 +25,7 @@ public class ConsultRols implements ConsultRolsService {
         List<RolDTO> rolDTOList = new ArrayList<>();
         RolDTO rolDTO;
         List<Rol> rolList = rolRepository.findAll();
-        for (Rol rolDB: rolList) {
+        for (Rol rolDB : rolList) {
             rolDTO = new RolDTO();
             rolDTO.setId(rolDB.getId());
             rolDTO.setDescription(rolDB.getDescription());

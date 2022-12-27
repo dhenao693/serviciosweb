@@ -16,30 +16,30 @@ public class UserInfoContact {
     @Id
     @GenericGenerator(name = "SEQ_VALOR", strategy = "increment")
     @GeneratedValue(generator = "SEQ_VALOR")
-    @Column(name ="ID_USUARIO_INFO_CONTACTO")
+    @Column(name = "ID_USUARIO_INFO_CONTACTO")
     private long id;
 
-    @Column(name ="TIPO_DOCUMENTO")
+    @Column(name = "TIPO_DOCUMENTO")
     private String documentType;
 
-    @Column(name ="NUMERO_DOCUMENTO")
+    @Column(name = "NUMERO_DOCUMENTO")
     private String documentNumber;
 
-    @Column(name ="NOMBRES")
+    @Column(name = "NOMBRES")
     private String name;
 
-    @Column(name ="APELLIDOS")
+    @Column(name = "APELLIDOS")
     private String lastName;
 
-    @Column(name ="NUMERO_CONTACTO")
+    @Column(name = "NUMERO_CONTACTO")
     private String phone;
 
-    @Column(name ="EMAIL")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name ="USUARIO_CREACION")
+    @Column(name = "USUARIO_CREACION")
     private String userCreate;
 
-    @Column(name ="FECHA_CREACION")
+    @Column(name = "FECHA_CREACION")
     private String dateCreate;
 }

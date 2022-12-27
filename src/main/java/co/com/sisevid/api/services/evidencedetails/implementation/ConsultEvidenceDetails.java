@@ -4,12 +4,11 @@ import co.com.sisevid.api.dto.EvidenceDetailsDTO;
 import co.com.sisevid.api.entities.EvidenceDetails;
 import co.com.sisevid.api.repositoty.EvidenceDetailsRepository;
 import co.com.sisevid.api.services.evidencedetails.ConsultEvidenceDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultEvidenceDetails implements ConsultEvidenceDetailsService {
@@ -28,7 +27,7 @@ public class ConsultEvidenceDetails implements ConsultEvidenceDetailsService {
         List<EvidenceDetailsDTO> evidencesDetailsDTO = new ArrayList<>();
         EvidenceDetailsDTO evidenceDetailsDTO;
 
-        for (EvidenceDetails evidenceDetailsDB: evidencesDetails) {
+        for (EvidenceDetails evidenceDetailsDB : evidencesDetails) {
             evidenceDetailsDTO = new EvidenceDetailsDTO();
             evidenceDetailsDTO.setId(evidenceDetailsDB.getId());
             evidenceDetailsDTO.setEvidenceId(evidenceDetailsDB.getEvidenceId());

@@ -25,7 +25,7 @@ public class ConsultUsers implements ConsultUsersService {
         List<UserDto> userDtoList = new ArrayList<>();
         UserDto userDto;
         List<User> userDBList = userRepository.findAll();
-        for (User userDB: userDBList) {
+        for (User userDB : userDBList) {
             userDto = new UserDto();
             userDto.setId(userDB.getId());
             userDto.setUser(userDB.getUser());

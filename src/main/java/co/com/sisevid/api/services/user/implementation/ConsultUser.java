@@ -19,7 +19,7 @@ public class ConsultUser implements ConsultUserServices {
 
     @Override
     public UserDto consultUser(String user) {
-        User userDB =  userRepository.findByUser(user);
+        User userDB = userRepository.findByUser(user);
         UserDto userDto = new UserDto();
         userDto.setId(userDB.getId());
         userDto.setUser(userDB.getUser());

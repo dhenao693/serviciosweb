@@ -1,22 +1,25 @@
 package co.com.sisevid.api.controller;
 
-import co.com.sisevid.api.dto.EvidenceDTO;
 import co.com.sisevid.api.dto.EvidenceWithDetailsDTO;
-import co.com.sisevid.api.dto.RolDTO;
 import co.com.sisevid.api.dto.UserWithRolsDTO;
-import co.com.sisevid.api.services.evidence.implementation.ConsultEvidences;
 import co.com.sisevid.api.services.joins.implementation.ConsultEvidenceWithDetails;
 import co.com.sisevid.api.services.joins.implementation.CreateEvidenceWithDetails;
 import co.com.sisevid.api.services.joins.implementation.DeleteEvidenceWithDetails;
 import co.com.sisevid.api.services.joins.implementation.UserWithRols;
-import co.com.sisevid.api.services.rols.implementation.ConsultRol;
-import co.com.sisevid.api.services.rols.implementation.ConsultRols;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/joins")
 public class Joins {

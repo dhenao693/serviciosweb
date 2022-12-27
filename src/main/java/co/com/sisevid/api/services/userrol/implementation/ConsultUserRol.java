@@ -25,7 +25,7 @@ public class ConsultUserRol implements ConsultUserRolService {
         List<UserRolDTO> userRolDTOList = new ArrayList<>();
         UserRolDTO userRolDTO;
         List<UserRol> userDBList = userRolRepository.findAll();
-        for (UserRol userRolDB: userDBList) {
+        for (UserRol userRolDB : userDBList) {
             userRolDTO = new UserRolDTO();
             userRolDTO.setId(userRolDB.getId());
             userRolDTO.setUser(userRolDB.getUser());

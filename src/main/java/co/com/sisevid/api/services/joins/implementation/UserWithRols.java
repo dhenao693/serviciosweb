@@ -29,7 +29,7 @@ public class UserWithRols implements UserWithRolsServices {
 
     @Override
     public UserWithRolsDTO consultUserWithRols(String user) {
-        User userDB =  userRepository.findByUser(user);
+        User userDB = userRepository.findByUser(user);
 
         UserWithRolsDTO userWithRolsDTO = new UserWithRolsDTO();
         userWithRolsDTO.setId(userDB.getId());
@@ -39,18 +39,18 @@ public class UserWithRols implements UserWithRolsServices {
 
         List<UserRol> userRolDBList = userRolRepository.findByUser(userDB.getId());
         List<Long> idList = new ArrayList<>();
-        for (UserRol userRol: userRolDBList) {
+        for (UserRol userRol : userRolDBList) {
             idList.add(userRol.getRol().getId());
         }
         List<Rol> rolDBList = rolRepository.findAllById(idList);
         List<RolDTO> rolList = new ArrayList<>();
         RolDTO rolDTO;
 
-        for (Rol rolDB :rolDBList) {
+        for (Rol rolDB : rolDBList) {
             rolDTO = new RolDTO();
             Optional<Rol> rol = rolRepository.findById(rolDB.getId());
-            rolDTO.setId( rol.get().getId());
-            rolDTO.setDescription( rol.get().getDescription());
+            rolDTO.setId(rol.get().getId());
+            rolDTO.setDescription(rol.get().getDescription());
             rolDTO.setCreateUser(rol.get().getCreateUser());
             rolDTO.setCreateDate(rol.get().getCreateDate());
             rolList.add(rolDTO);

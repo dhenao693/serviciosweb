@@ -20,6 +20,7 @@ public class ConsultAllEvidenceDetails implements ConsultAllEvidenceDetailsServi
     public ConsultAllEvidenceDetails(EvidenceDetailsRepository evidenceDetailsRepository) {
         this.evidenceDetailsRepository = evidenceDetailsRepository;
     }
+
     @Override
     public List<EvidenceDetailsDTO> consultAllEvidenceDetails() {
         List<EvidenceDetails> evidencesDetails = evidenceDetailsRepository.findAll();
@@ -27,7 +28,7 @@ public class ConsultAllEvidenceDetails implements ConsultAllEvidenceDetailsServi
         List<EvidenceDetailsDTO> evidencesDetailsDTO = new ArrayList<>();
         EvidenceDetailsDTO evidenceDetailsDTO;
 
-        for (EvidenceDetails evidenceDetailsDB: evidencesDetails) {
+        for (EvidenceDetails evidenceDetailsDB : evidencesDetails) {
             evidenceDetailsDTO = new EvidenceDetailsDTO();
             evidenceDetailsDTO.setId(evidenceDetailsDB.getId());
             evidenceDetailsDTO.setEvidenceId(evidenceDetailsDB.getEvidenceId());

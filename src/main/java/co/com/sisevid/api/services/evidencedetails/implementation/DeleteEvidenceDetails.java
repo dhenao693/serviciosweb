@@ -1,12 +1,9 @@
 package co.com.sisevid.api.services.evidencedetails.implementation;
 
-import co.com.sisevid.api.dto.EvidenceDetailsDTO;
 import co.com.sisevid.api.repositoty.EvidenceDetailsRepository;
 import co.com.sisevid.api.services.evidencedetails.DeleteEvidenceDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class DeleteEvidenceDetails implements DeleteEvidenceDetailsService {

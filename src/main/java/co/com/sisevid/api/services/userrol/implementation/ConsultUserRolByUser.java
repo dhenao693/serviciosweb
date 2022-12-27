@@ -1,18 +1,12 @@
 package co.com.sisevid.api.services.userrol.implementation;
 
 import co.com.sisevid.api.dto.UserRolDTO;
-import co.com.sisevid.api.entities.User;
-import co.com.sisevid.api.services.userrol.ConsultUserRolByUserService;
-
-import java.util.List;
-import co.com.sisevid.api.dto.UserRolDTO;
 import co.com.sisevid.api.entities.UserRol;
 import co.com.sisevid.api.repositoty.UserRolRepository;
-import co.com.sisevid.api.services.userrol.ConsultUserRolService;
+import co.com.sisevid.api.services.userrol.ConsultUserRolByUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

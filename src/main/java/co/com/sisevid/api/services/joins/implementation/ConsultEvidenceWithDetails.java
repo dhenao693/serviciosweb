@@ -23,28 +23,29 @@ public class ConsultEvidenceWithDetails implements ConsultEvidenceWithDetailsSer
     @Override
     public List<EvidenceWithDetailsDTO> consultEvidenceWithDetails() {
         List<Evidence> evidenceList = evidenceRepository.findAll();
-        EvidenceWithDetailsDTO evidenceWithDetailsDTO =  new EvidenceWithDetailsDTO();;
+        EvidenceWithDetailsDTO evidenceWithDetailsDTO = new EvidenceWithDetailsDTO();
+        ;
         List<EvidenceWithDetailsDTO> evidenceWithDetailsDTOList = new ArrayList<>();
-        for (Evidence evidenceDB: evidenceList) {
+        for (Evidence evidenceDB : evidenceList) {
             List<EvidenceDetails> evidenceDetailsListDB = evidenceDetailsRepository.findByEvidenceId(evidenceDB.getId());
 
-            for (EvidenceDetails evidenceDetails: evidenceDetailsListDB) {
-                evidenceWithDetailsDTO =  new EvidenceWithDetailsDTO();
+            for (EvidenceDetails evidenceDetails : evidenceDetailsListDB) {
+                evidenceWithDetailsDTO = new EvidenceWithDetailsDTO();
                 System.out.println(evidenceDetails);
-                if (evidenceDetails.getActive().equalsIgnoreCase("S")){
+                if (evidenceDetails.getActive().equalsIgnoreCase("S")) {
                     evidenceWithDetailsDTO.setEvidenceDetail(evidenceDetails);
-                    if (evidenceDetails.getStatus().equalsIgnoreCase("2")){
+                    if (evidenceDetails.getStatus().equalsIgnoreCase("2")) {
                         evidenceWithDetailsDTO.setStatus("Verificada");
                     } else if (evidenceDetails.getStatus().equalsIgnoreCase("3")) {
                         evidenceWithDetailsDTO.setStatus("Verificada y validada");
-                    }else {
+                    } else {
                         evidenceWithDetailsDTO.setStatus("No verificada");
                     }
                     break;
                 }
             }
 
-            if (!evidenceDetailsListDB.isEmpty()){
+            if (!evidenceDetailsListDB.isEmpty()) {
                 evidenceWithDetailsDTO.setId(evidenceDB.getId());
                 evidenceWithDetailsDTO.setTitle(evidenceDB.getTitle());
                 evidenceWithDetailsDTO.setDescription(evidenceDB.getDescription());
