@@ -25,7 +25,7 @@ public class RolController {
     private ConsultRolById consultRolById;
 
     @GetMapping(path = "/consultRols", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<RolDTO>> seeUsers() {
+    public ResponseEntity<List<RolDTO>> seeRols() {
         try {
             return ResponseEntity.ok(consultRols.consultRols());
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class RolController {
     }
 
     @GetMapping(path = "/consultRol", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RolDTO> seeUsers(@RequestParam("rol") String rol) {
+    public ResponseEntity<RolDTO> seeRol(@RequestParam("rol") String rol) {
         try {
             return ResponseEntity.ok(consultRol.consultRol(rol));
         } catch (Exception e) {

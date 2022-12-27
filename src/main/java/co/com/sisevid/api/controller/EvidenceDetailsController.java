@@ -43,7 +43,7 @@ public class EvidenceDetailsController {
     }
 
     @DeleteMapping(path = "/deteleEvidence/{idEvidencia}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> seeUsers(@PathVariable Long idEvidencia) {
+    public ResponseEntity<Boolean> deleteEvidence(@PathVariable Long idEvidencia) {
         try {
             deleteEvidenceDetails.deleteByEvidenceId(idEvidencia);
             return ResponseEntity.ok(Boolean.TRUE);

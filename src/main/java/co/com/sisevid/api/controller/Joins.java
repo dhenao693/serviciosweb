@@ -33,7 +33,7 @@ public class Joins {
     private CreateEvidenceWithDetails createEvidenceWithDetails;
 
     @GetMapping(path = "/consultUserWithRols", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserWithRolsDTO> verEmpleados(@RequestParam("user") String user) {
+    public ResponseEntity<UserWithRolsDTO> seeUserWithRols(@RequestParam("user") String user) {
         try {
             return ResponseEntity.ok(userWithRols.consultUserWithRols(user));
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class Joins {
     }
 
     @DeleteMapping(path = "/deleteEvidenceWithDetails/{idEvidencia}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> verEmpleados(@PathVariable Long idEvidencia) {
+    public ResponseEntity<Boolean> deleteEvidenceWithDetails(@PathVariable Long idEvidencia) {
         try {
             deleteEvidenceWithDetails.deleteEvidenceWith(idEvidencia);
             return ResponseEntity.ok(Boolean.TRUE);
@@ -52,7 +52,7 @@ public class Joins {
     }
 
     @GetMapping(path = "/consultEvidenceWithDetails", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<EvidenceWithDetailsDTO>> verEmpleados() {
+    public ResponseEntity<List<EvidenceWithDetailsDTO>> seeEvidenceWithDetails() {
         try {
             return ResponseEntity.ok(consultEvidenceWithDetails.consultEvidenceWithDetails());
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public class Joins {
     }
 
     @PostMapping(path = "/createEvidenceWithDetails", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> verEmpleados(@RequestBody EvidenceWithDetailsDTO evidenceWithDetailsDTO) {
+    public ResponseEntity<Boolean> createEvidenceWithDetails(@RequestBody EvidenceWithDetailsDTO evidenceWithDetailsDTO) {
         try {
             createEvidenceWithDetails.createEvidenceWithDetails(evidenceWithDetailsDTO);
             return ResponseEntity.ok(Boolean.TRUE);

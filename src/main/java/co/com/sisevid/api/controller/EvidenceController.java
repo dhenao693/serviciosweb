@@ -24,7 +24,7 @@ public class EvidenceController {
     private DeleteEvidence deleteEvidence;
 
     @GetMapping(path = "/consultEvidences", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<EvidenceDTO>> seeUsers() {
+    public ResponseEntity<List<EvidenceDTO>> seeEvidence() {
         try {
             return ResponseEntity.ok(consultEvidences.consultEvidences());
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class EvidenceController {
     }
 
     @DeleteMapping(path = "/deteleEvidence/{idEvidencia}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> seeUsers(@PathVariable Long idEvidencia) {
+    public ResponseEntity<Boolean> deleteEvidence(@PathVariable Long idEvidencia) {
         try {
             deleteEvidence.deleteById(idEvidencia);
             return ResponseEntity.ok(Boolean.TRUE);

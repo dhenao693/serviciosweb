@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/consultUser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDto> verEmpleados(@RequestParam("user") String user) {
+    public ResponseEntity<UserDto> seeUser(@RequestParam("user") String user) {
         try {
             return ResponseEntity.ok(consultUser.consultUser(user));
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> guardarEmpleado(@RequestBody UserDto user) {
+    public ResponseEntity<Boolean> createUser(@RequestBody UserDto user) {
         try {
             createUser.createUser(user);
             return ResponseEntity.ok(Boolean.TRUE);
