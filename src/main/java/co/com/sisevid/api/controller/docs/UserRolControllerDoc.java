@@ -3,6 +3,8 @@ package co.com.sisevid.api.controller.docs;
 import co.com.sisevid.api.dto.EvidenceDTO;
 import co.com.sisevid.api.dto.UserRolDTO;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
+import co.com.sisevid.api.entities.Rol;
+import co.com.sisevid.api.entities.User;
 import co.com.sisevid.api.entities.UserRol;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-@Tag(name = "Rols")
+@Tag(name = "User Rols")
 public interface UserRolControllerDoc {
     @Operation(summary = "Create a rol")
     @ApiResponses(value = {
@@ -74,15 +76,7 @@ public interface UserRolControllerDoc {
     })
     ResponseEntity<ApiResponseDTO<List<UserRolDTO>>> findEvidences(
             @RequestParam(name = "id", required = false) final Long id,
-            @RequestParam(name = "title", required = false) final String title,
-            @RequestParam(name = "description", required = false) final String description,
-            @RequestParam(name = "type", required = false) final String type,
-            @RequestParam(name = "typeFile", required = false) final String typeFile,
-            @RequestParam(name = "typeFile", required = false) final String evidenceCreationDate,
-            @RequestParam(name = "typeFile", required = false) final String evidenceRegisterDate,
-            @RequestParam(name = "typeFile", required = false) final String authors,
-            @RequestParam(name = "typeFile", required = false) final String observation,
-            @RequestParam(name = "typeFile", required = false) final String userCreate,
-            @RequestParam(name = "typeFile", required = false) final String creationDate
+            @RequestParam(name = "user", required = false) final User user,
+            @RequestParam(name = "rol", required = false) final Rol rol
     ) throws EntityNotFoundException;
 }
