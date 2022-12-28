@@ -16,6 +16,7 @@ public class EvidencesCrud implements EvidenceCrudServices {
         this.evidenceCrudRepository = evidenceCrudRepository;
     }
 
+
     public Evidence save(Evidence evidence) {
         return evidenceCrudRepository.save(evidence);
     }
@@ -26,7 +27,6 @@ public class EvidencesCrud implements EvidenceCrudServices {
         } else {
             throw new EntityNotFoundException("The client does not exist");
         }
-
     }
 
     public List<Evidence> findByFilters(Long id, String title, String description, String type, String typeFile,

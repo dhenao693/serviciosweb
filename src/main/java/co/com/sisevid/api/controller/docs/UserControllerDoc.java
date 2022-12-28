@@ -1,6 +1,7 @@
 package co.com.sisevid.api.controller.docs;
 
 import co.com.sisevid.api.dto.EvidenceDTO;
+import co.com.sisevid.api.dto.UserDto;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
 import co.com.sisevid.api.entities.Evidence;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +31,7 @@ public interface UserControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<EvidenceDTO>> save(@RequestBody final Evidence evidence);
+    ResponseEntity<ApiResponseDTO<UserDto>> save(@RequestBody final Evidence evidence);
 
     @Operation(summary = "Delete a user")
     @ApiResponses(value = {
@@ -56,7 +57,7 @@ public interface UserControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<EvidenceDTO>> update(@RequestBody final Evidence client) throws EntityNotFoundException;
+    ResponseEntity<ApiResponseDTO<UserDto>> update(@RequestBody final Evidence client) throws EntityNotFoundException;
 
     @Operation(summary = "Find a user by filters")
     @ApiResponses(value = {
@@ -69,11 +70,12 @@ public interface UserControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<List<EvidenceDTO>>> findEvidences(
+    ResponseEntity<ApiResponseDTO<List<UserDto>>> findUsers(
             @RequestParam(name = "id", required = false) final Long id,
             @RequestParam(name = "idUserInfo", required = false) final String idUserInfo,
             @RequestParam(name = "password", required = false) final String password,
             @RequestParam(name = "user", required = false) final String user,
-            @RequestParam(name = "userCreate", required = false) final String userCreate
+            @RequestParam(name = "userCreate", required = false) final String userCreate,
+            @RequestParam(name = "dateCreate", required = false) final String dateCreate
     ) throws EntityNotFoundException;
 }
