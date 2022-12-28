@@ -62,7 +62,7 @@ public class UserInfoControllerSolid implements UserInfoControllerDoc {
         return null;
     }
 
-    @GetMapping(path = "/findUsers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/findUserInfo", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<ApiResponseDTO<List<UserInfoContactDTO>>> findUsers(
             @RequestParam(name = "id", required = false) final Long id,

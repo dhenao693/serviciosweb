@@ -34,7 +34,7 @@ public class UserControllerSolid implements UserControllerDoc {
         this.userCrud = userCrud;
     }
 
-
+    //FALLA EL INSERT; REVISAR PORQUE
     @PostMapping()
     public ResponseEntity<ApiResponseDTO<UserDto>> save(User user) {
         final User userSaved = userCrud.save(user);
