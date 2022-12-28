@@ -32,6 +32,4 @@ public class UserCrud implements UserCrudServices {
     public List<User> findByFilters(Long id, String idUserInfo, String user, String password, String userCreate, String dateCreate) throws EntityNotFoundException {
         return userCrudRepository.findByFilters(id, idUserInfo, user, password, userCreate, dateCreate);
     }
-
-
 }

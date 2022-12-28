@@ -3,7 +3,6 @@ package co.com.sisevid.api.controller.implementationSolid;
 import co.com.sisevid.api.controller.docs.UserControllerDoc;
 import co.com.sisevid.api.dto.UserDto;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
-import co.com.sisevid.api.entities.Evidence;
 import co.com.sisevid.api.entities.User;
 import co.com.sisevid.api.services.implementation.UserCrud;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,37 +36,28 @@ public class UserControllerSolid implements UserControllerDoc {
 
 
     @PostMapping()
-    public ResponseEntity<ApiResponseDTO<UserDto>> save(Evidence evidence) {
-        return null;
+    public ResponseEntity<ApiResponseDTO<UserDto>> save(User user) {
+        final User userSaved = userCrud.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.<UserDto>builder().code(HttpStatus.CREATED.value()).message("Client saved successfully").data(objectMapper.convertValue(userSaved, UserDto.class)).build());
     }
 
     @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ApiResponseDTO<Object>> delete(Long id) {
-        return null;
+        userCrud.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.builder().code(HttpStatus.OK.value()).message("User deleted successfully").build());
     }
 
     @PutMapping()
-    public ResponseEntity<ApiResponseDTO<UserDto>> update(Evidence client) throws EntityNotFoundException {
+    public ResponseEntity<ApiResponseDTO<UserDto>> update(User user) throws EntityNotFoundException {
         return null;
     }
 
     @GetMapping(path = "/findUsers", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<ApiResponseDTO<List<UserDto>>> findUsers(@RequestParam(name = "id", required = false) final Long id,
-                                                                   @RequestParam(name = "idUserInfo", required = false) final String idUserInfo,
-                                                                   @RequestParam(name = "user", required = false) final String user,
-                                                                   @RequestParam(name = "password", required = false) final String password,
-                                                                   @RequestParam(name = "userCreate", required = false) final String userCreate,
-                                                                   @RequestParam(name = "dateCreate", required = false) final String dateCreate)
-            throws EntityNotFoundException {
+    public ResponseEntity<ApiResponseDTO<List<UserDto>>> findUsers(
+            @RequestParam(name = "id", required = false) final Long id, @RequestParam(name = "idUserInfo", required = false) final String idUserInfo, @RequestParam(name = "user", required = false) final String user, @RequestParam(name = "password", required = false) final String password, @RequestParam(name = "userCreate", required = false) final String userCreate, @RequestParam(name = "dateCreate", required = false) final String dateCreate) throws EntityNotFoundException {
         List<User> userList = userCrud.findByFilters(id, idUserInfo, user, password, userCreate, dateCreate);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(ApiResponseDTO.<List<UserDto>>builder()
-                        .code(HttpStatus.OK.value())
-                        .message("Client list retrieved successfully")
-                        .data(userList.stream().map(this::convertModelToDto).collect(Collectors.toList()))
-                        .build()
-                );
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.<List<UserDto>>builder().code(HttpStatus.OK.value()).message("Client list retrieved successfully").data(userList.stream().map(this::convertModelToDto).collect(Collectors.toList())).build());
     }
 
     private UserDto convertModelToDto(User user) {

@@ -3,13 +3,14 @@ package co.com.sisevid.api.controller.docs;
 import co.com.sisevid.api.dto.EvidenceDTO;
 import co.com.sisevid.api.dto.UserDto;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
-import co.com.sisevid.api.entities.Evidence;
+import co.com.sisevid.api.entities.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Tag(name = "Users")
 public interface UserControllerDoc {
     @Operation(summary = "Create a user")
     @ApiResponses(value = {
@@ -31,7 +33,7 @@ public interface UserControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<UserDto>> save(@RequestBody final Evidence evidence);
+    ResponseEntity<ApiResponseDTO<UserDto>> save(@RequestBody final User user);
 
     @Operation(summary = "Delete a user")
     @ApiResponses(value = {
@@ -57,7 +59,7 @@ public interface UserControllerDoc {
                     }
             )
     })
-    ResponseEntity<ApiResponseDTO<UserDto>> update(@RequestBody final Evidence client) throws EntityNotFoundException;
+    ResponseEntity<ApiResponseDTO<UserDto>> update(@RequestBody final User user) throws EntityNotFoundException;
 
     @Operation(summary = "Find a user by filters")
     @ApiResponses(value = {

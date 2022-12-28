@@ -4,7 +4,6 @@ import co.com.sisevid.api.controller.docs.EvidencesControllerDoc;
 import co.com.sisevid.api.dto.EvidenceDTO;
 import co.com.sisevid.api.dto.security.ApiResponseDTO;
 import co.com.sisevid.api.entities.Evidence;
-import co.com.sisevid.api.services.evidence.implementation.ConsultEvidences;
 import co.com.sisevid.api.services.implementation.EvidencesCrud;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -27,19 +26,25 @@ import java.util.stream.Collectors;
 @RequestMapping("/evidencesCrud")
 @CrossOrigin(origins = "*")
 public class EvidenceControllerSolid implements EvidencesControllerDoc {
-    private final ConsultEvidences consultEvidences;
     private final EvidencesCrud evidencesCrud;
     private final ObjectMapper objectMapper;
 
-    public EvidenceControllerSolid(ConsultEvidences consultEvidences, EvidencesCrud evidencesCrud, ObjectMapper objectMapper) {
-        this.consultEvidences = consultEvidences;
+    public EvidenceControllerSolid(EvidencesCrud evidencesCrud, ObjectMapper objectMapper) {
+
         this.evidencesCrud = evidencesCrud;
         this.objectMapper = objectMapper;
     }
 
     @PostMapping()
     public ResponseEntity<ApiResponseDTO<EvidenceDTO>> save(Evidence evidence) {
-        return null;
+        final Evidence evidenceSaved = evidencesCrud.save(evidence);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponseDTO.<EvidenceDTO>builder()
+                        .code(HttpStatus.CREATED.value())
+                        .message("Client saved successfully")
+                        .data(objectMapper.convertValue(evidenceSaved, EvidenceDTO.class))
+                        .build()
+                );
     }
 
     @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
